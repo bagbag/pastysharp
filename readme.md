@@ -1,0 +1,1 @@
+[Main repo!](https://github.com/bagbag/pasty)

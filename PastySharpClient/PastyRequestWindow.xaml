@@ -1,0 +1,28 @@
+﻿<controls:MetroWindow x:Class="PastySharpClient.PastyRequestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:viewModels="clr-namespace:PastySharpClient.ViewModels"
+        Title="PastyRequestWindow" Height="75" Width="350" ShowTitleBar="False" ShowInTaskbar="False" ShowMinButton="False" ShowMaxRestoreButton="False" Topmost="True" Focusable="False" ShowActivated="False" MouseLeftButtonDown="MetroWindow_MouseLeftButtonDown" >
+    <controls:MetroWindow.Effect>
+        <DropShadowEffect/>
+    </controls:MetroWindow.Effect>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Padding="0" Margin="0,0,0,5" Content="{Binding Path=(viewModels:PastyRequestWindowViewModel.Filename)}" />
+
+        <Label Margin="0" Padding="0" Grid.Row="1" Grid.Column="0" Content="{Binding Path=(viewModels:PastyRequestWindowViewModel.State)}" />
+        <controls:MetroProgressBar Margin="0" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Maximum="1" Value="{Binding Path=(viewModels:PastyRequestWindowViewModel.Progress)}" />
+        <Label Margin="0" Padding="0" Grid.Row="1" Grid.Column="2" Content="{Binding Path=(viewModels:PastyRequestWindowViewModel.ProgressString)}" />
+    </Grid>
+</controls:MetroWindow>
