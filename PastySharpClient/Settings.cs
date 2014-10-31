@@ -17,7 +17,7 @@ namespace PastySharpClient
 {
     public class Settings
     {
-        internal const long MAX_FILE_SIZE = 1024 * 1024 * 5;
+        internal const long MAX_FILE_SIZE = 1024 * 1024 * 25;
         internal const string SERVER = "psty.de";
         internal const int PORT = 12345;
 

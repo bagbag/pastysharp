@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.5.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -202,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\pastysharp2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dlls\RestSharp.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
