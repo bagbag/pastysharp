@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -27,6 +30,10 @@ namespace PastySharpClient
 
         public MainWindow()
         {
+            var updateThread = new Thread(CheckForUpdate);
+            updateThread.IsBackground = true;
+            updateThread.Start();
+
             DataContext = _mainWindowViewModel;
             ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Green"), ThemeManager.GetAppTheme("BaseDark"));
 
@@ -104,6 +111,30 @@ namespace PastySharpClient
         {
             if (WindowState == WindowState.Minimized)
                 Hide();
+        }
+
+        private void CheckForUpdate()
+        {
+            try
+            {
+                var newest = new WebClient().DownloadString("http://bagbag.github.io/pasty/psversion.txt");
+                var current = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+                if (newest != current)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (MessageBox.Show("Open browser?", "Update available",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            Process.Start("https://github.com/bagbag/pasty/releases");
+                        }
+                    });
+                }
+            }
+            catch
+            {
+                //do nothing
+            }
         }
     }
 }

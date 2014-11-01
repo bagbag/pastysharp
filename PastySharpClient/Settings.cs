@@ -92,9 +92,13 @@ namespace PastySharpClient
 
                 using (var fileStream = new FileStream(SettingsPath, FileMode.Open, FileAccess.Read))
                 {
-                    var serializer = new XmlSerializer(typeof(Settings));
+                    var serializer = new XmlSerializer(typeof (Settings));
                     _instance = serializer.Deserialize(fileStream) as Settings;
                 }
+            }
+            catch
+            {
+                //just don't throw an error
             }
             finally
             {
